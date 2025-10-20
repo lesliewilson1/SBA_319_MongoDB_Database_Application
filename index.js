@@ -52,6 +52,22 @@ app.get('/media/:id', async (req, res) =>{
     console.log(results)
     res.json(results)
 });
+//-----------------------------------End Get Routes-------------------------------------------//
+//-----------------------------------Post Routes---------------------------------------------//
+app.post('/witnesses', async (req, res) => {
+    try{
+        const withnessDoc = new Witness(req.body);
+        const result = await withnessDoc.save();
+        res.json(result)
+        console.log(result)
+    }catch(er) {
+        res.status(400).json({ Oops: er.message });
+    }
+
+});
+
+
+
 
 
 //testing main URL
