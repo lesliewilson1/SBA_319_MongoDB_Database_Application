@@ -1,15 +1,62 @@
 import 'dotenv/config'
-import express from 'express';
+import express from 'express'
+import mongoose from 'mongoose'
+import Sighting from './models/Sighting.js'
+import Witness from './models/Witness.js'
+import Media from './models/Media.js'
+const app = express()
+const port = process.env.PORT || 3000
 
-import mongoose from 'mongoose';
+await mongoose.connect (process.env.ATLAS_URI)
 
-const app = express();
-const port = process.env.PORT || 3000;
+app.use(express.json())
 
-await mongoose.connect (process.env.ATLAS_URI);
+//-----------------------------------Get Routes-------------------------------------------//
 
+//Get all sightings
+app.get('/sightings', async (req,res) => {
+    const results = await Sighting.find({})
+    res.json(results)
+});
+
+//Get all witnesses
+app.get('/witnesses', async (req,res) => {
+    const results = await Witness.find({})
+    console.log(results)
+    res.json(results)
+});
+
+//Get all media
+app.get('/media', async (req,res) => {
+    const results = await Media.find({})
+    res.json(results)
+});
+
+//Get sightings by ID
+app.get('/sightings/:id', async (req, res) =>{
+    const results = await Sighting.find({ _id: req.params.id })
+    console.log(results)
+    res.json(results)
+});
+
+//Get witnesses by ID
+app.get('/witnesses/:id', async (req, res) =>{
+    const results = await Witness.find({ _id: req.params.id })
+    console.log(results)
+    res.json(results)
+});
+
+//Get media by ID
+app.get('/media/:id', async (req, res) =>{
+    const results = await Media.find({ _id: req.params.id })
+    console.log(results)
+    res.json(results)
+});
+
+
+//testing main URL
 app.get('/', (req,res) => {
-    res.send('Hello World');
+    res.send('Welcome humaniods to our humanmade UFO sightings database. We come in peace (for the most part)☮');
 });
 
 app.listen(3000, async () => {
