@@ -3,19 +3,23 @@ import mongoose from "mongoose";
 const witnessSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     age: {
         type: Number,
         required: true
+        //Not indexed: high write-to-read ratio
     },
     gender: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     credibilityScore: {
         type: Number,
-        required: true
+        required: true,
+        index: true
     }
 
 });

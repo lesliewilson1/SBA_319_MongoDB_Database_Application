@@ -84,7 +84,13 @@ app.post('/media', async (req, res) => {
 
 //-----------------------------------End Post Routes---------------------------------------------//
 //-----------------------------------Put Routes---------------------------------------------//
+app.put('/media/:id', async (req, res) => {
+    try {const result = await Media.findByIdAndUpdate(req.params.id, req.body, { new: true});
+} catch(er) {
+    res.status(500).json({ Oops: er.message });
+}
 
+});
 //-----------------------------------End Put Routes---------------------------------------------//
 
 
@@ -114,9 +120,6 @@ app.delete('/media/:id', async (req, res) => {
     }
 })
 //-----------------------------------End Delete Routes---------------------------------------------//
-
-
-
 
 //testing main URL
 app.get('/', (req,res) => {
