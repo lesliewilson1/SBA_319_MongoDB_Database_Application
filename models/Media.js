@@ -9,10 +9,11 @@ const mediaSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    timestamp: {
-        type: String,
+    witness: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Witness', 
         required: true
-    },
+    }
+
 })
 
 const Media = mongoose.model("media", mediaSchema, "media")

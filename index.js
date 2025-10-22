@@ -32,7 +32,7 @@ app.get('/media', async (req,res) => {
     res.json(results)
 });
 
-//Get sightings by ID
+//Get sightings by _id
 app.get('/sightings/:id', async (req, res) =>{
     const results = await Sighting.find({ _id: req.params.id })
     console.log(results)
@@ -54,6 +54,8 @@ app.get('/media/:id', async (req, res) =>{
 });
 //-----------------------------------End Get Routes-------------------------------------------//
 //-----------------------------------Post Routes---------------------------------------------//
+
+//Post witness
 app.post('/witnesses', async (req, res) => {
     try{
         const withnessDoc = new Witness(req.body);
@@ -68,6 +70,20 @@ app.post('/witnesses', async (req, res) => {
 
 
 
+//-----------------------------------End Post Routes---------------------------------------------//
+//-----------------------------------Delete Routes---------------------------------------------//
+
+//Delete witness
+app.delete('/witness/:id', async (req, res) => {
+    try {
+        const result = await Media.deleteOnce({ _id: req.params.id });
+        console.log(result);
+        res.json({ message: 'Witness information deleted successfully', result });
+    } catch (er) {
+        console.er(er);
+        res.status(500).json({ Oops: er.message})
+    }
+})
 
 
 //testing main URL
