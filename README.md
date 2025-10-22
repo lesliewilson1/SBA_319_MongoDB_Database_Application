@@ -85,10 +85,11 @@ Welcome to the **Humanmade UFO Sightings Database** — an Express.js and MongoD
 
 ---
 
-- ## 🪶Copyright
+## 🪶Copyright
 
 Pull requests are welcome. No Rights Reserved.
 
+---
 
 ## 🤩Acknowledgement
 
