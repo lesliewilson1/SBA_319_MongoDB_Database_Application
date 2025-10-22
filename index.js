@@ -58,8 +58,21 @@ app.get('/media/:id', async (req, res) =>{
 //Post witness
 app.post('/witnesses', async (req, res) => {
     try{
-        const withnessDoc = new Witness(req.body);
-        const result = await withnessDoc.save();
+        const witnessDoc = new Witness(req.body);
+        const result = await witnessDoc.save();
+        res.json(result)
+        console.log(result)
+    }catch(er) {
+        res.status(400).json({ Oops: er.message });
+    }
+
+});
+
+//Post media
+app.post('/media', async (req, res) => {
+    try{
+        const mediaDoc = new Media(req.body);
+        const result = await mediaDoc.save();
         res.json(result)
         console.log(result)
     }catch(er) {
@@ -69,21 +82,40 @@ app.post('/witnesses', async (req, res) => {
 });
 
 
-
 //-----------------------------------End Post Routes---------------------------------------------//
+//-----------------------------------Put Routes---------------------------------------------//
+
+//-----------------------------------End Put Routes---------------------------------------------//
+
+
 //-----------------------------------Delete Routes---------------------------------------------//
 
 //Delete witness
 app.delete('/witness/:id', async (req, res) => {
     try {
-        const result = await Media.deleteOnce({ _id: req.params.id });
+        const result = await Witness.deleteOne({ _id: req.params.id });
         console.log(result);
         res.json({ message: 'Witness information deleted successfully', result });
     } catch (er) {
-        console.er(er);
+        console.error(er);
         res.status(500).json({ Oops: er.message})
     }
 })
+
+//Delete media
+app.delete('/media/:id', async (req, res) => {
+    try {
+        const result = await Media.deleteOne({ _id: req.params.id });
+        console.log(result);
+        res.json({ message: 'Media information deleted successfully', result });
+    } catch (er) {
+        console.error(er);
+        res.status(500).json({ Oops: er.message})
+    }
+})
+//-----------------------------------End Delete Routes---------------------------------------------//
+
+
 
 
 //testing main URL
