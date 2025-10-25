@@ -52,6 +52,15 @@ app.get('/media/:id', async (req, res) =>{
     console.log(results)
     res.json(results)
 });
+
+//Get media for witness
+app.get('/witnesses/:id/media', async (req, res) => {
+   const results = await Media.find({ witness: req.params.id });
+    res.json(results);
+
+})
+
+
 //-----------------------------------End Get Routes-------------------------------------------//
 //-----------------------------------Post Routes---------------------------------------------//
 
@@ -123,7 +132,7 @@ app.delete('/media/:id', async (req, res) => {
 
 //testing main URL
 app.get('/', (req,res) => {
-    res.send('Welcome humaniods to our humanmade UFO sightings database. We come in peace (for the most part)☮');
+    res.send('Welcome humaniods to our humanmade UFO sightings database. We come in peace (for the most part) ☮');
 });
 
 app.listen(3000, async () => {
