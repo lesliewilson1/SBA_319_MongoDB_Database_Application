@@ -55,6 +55,15 @@ Welcome to the **Humanmade UFO Sightings Database** — an Express.js and MongoD
 
 ---
 
+### 📷 Media +🧍 Witnesses
+
+| Method | Route                     | Description                          |
+|--------|---------------------------|--------------------------------------|
+| GET    | `/witnesses/:id/media`    | Get a specific withness media        |
+
+
+---
+
 ## 🧪 Notes
 
 - All routes expect and return JSON.
